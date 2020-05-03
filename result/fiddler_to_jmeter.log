@@ -1,0 +1,71 @@
+2020-05-03 17:13:20,779 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2020-05-03 17:13:20,787 INFO o.a.j.JMeter: Loading user properties from: F:\apache-jmeter-x.x\apache-jmeter-4.0\bin\user.properties
+2020-05-03 17:13:20,787 INFO o.a.j.JMeter: Loading system properties from: F:\apache-jmeter-x.x\apache-jmeter-4.0\bin\system.properties
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: Copyright (c) 1998-2018 The Apache Software Foundation
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: Version 4.0 r1823414
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: java.version=1.8.0_202
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: os.name=Windows 10
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: os.arch=amd64
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: os.version=10.0
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: file.encoding=GBK
+2020-05-03 17:13:20,791 INFO o.a.j.JMeter: Max memory     =1073741824
+2020-05-03 17:13:20,792 INFO o.a.j.JMeter: Available Processors =12
+2020-05-03 17:13:20,794 INFO o.a.j.JMeter: Default Locale=English (EN)
+2020-05-03 17:13:20,794 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2020-05-03 17:13:20,794 INFO o.a.j.JMeter: JMeterHome=F:\apache-jmeter-x.x\apache-jmeter-4.0
+2020-05-03 17:13:20,794 INFO o.a.j.JMeter: user.dir  =C:\Users\dongp\PycharmProjects\Fiddler_To_jmeterScript\result
+2020-05-03 17:13:20,795 INFO o.a.j.JMeter: PWD       =C:\Users\dongp\PycharmProjects\Fiddler_To_jmeterScript\result
+2020-05-03 17:13:20,802 INFO o.a.j.JMeter: IP: 192.168.31.148 Name: LAPTOP-27UJIKQG FullName: LAPTOP-27UJIKQG
+2020-05-03 17:13:20,911 INFO o.a.j.g.a.LookAndFeelCommand: Installing Darcula LAF
+2020-05-03 17:13:20,921 INFO o.a.j.g.a.LookAndFeelCommand: Using look and feel: javax.swing.plaf.nimbus.NimbusLookAndFeel [Darcula]
+2020-05-03 17:13:20,921 INFO o.a.j.JMeter: Setting LAF to: javax.swing.plaf.nimbus.NimbusLookAndFeel
+2020-05-03 17:13:20,943 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2020-05-03 17:13:21,357 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2020-05-03 17:13:21,357 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2020-05-03 17:13:21,918 INFO o.a.j.JMeter: Loading file: fiddler_to_jmeter.jmx
+2020-05-03 17:13:21,919 INFO o.a.j.s.FileServer: Default base='C:\Users\dongp\PycharmProjects\Fiddler_To_jmeterScript\result'
+2020-05-03 17:13:21,920 INFO o.a.j.s.FileServer: Set new base='C:\Users\dongp\PycharmProjects\Fiddler_To_jmeterScript\result'
+2020-05-03 17:13:22,019 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2020-05-03 17:13:22,027 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2020-05-03 17:13:22,028 INFO o.a.j.s.SaveService: Using SaveService properties version 4.0
+2020-05-03 17:13:22,030 INFO o.a.j.s.SaveService: Loading file: fiddler_to_jmeter.jmx
+2020-05-03 17:13:22,122 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2020-05-03 17:13:22,128 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-05-03 17:13:22,128 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-05-03 17:13:22,128 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-05-03 17:13:22,128 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-05-03 17:13:22,129 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2020-05-03 17:13:22,129 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2020-05-03 17:13:22,163 INFO o.a.j.s.FileServer: Set new base='C:\Users\dongp\PycharmProjects\Fiddler_To_jmeterScript\result'
+2020-05-03 17:13:22,234 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2020-05-03 17:13:22,234 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2020-05-03 17:13:22,234 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2020-05-03 17:13:22,234 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2020-05-03 17:13:22,330 INFO o.j.r.JARSourceHTTP: Found cached repo
+2020-05-03 17:13:22,433 INFO o.j.r.PluginManager: Plugins Status: [jpgc-graphs-basic=2.0, jpgc-functions=2.1, jpgc-casutg=2.9, jpgc-dummy=0.4, jpgc-ffw=2.0, jpgc-httpraw=0.1, jpgc-fifo=0.2, jpgc-json=2.7, jpgc-perfmon=2.1, jpgc-plugins-manager=1.4, jpgc-tst=2.5, jmeter-core=4.0, jmeter-ftp=4.0, jmeter-http=4.0, jmeter-jdbc=4.0, jmeter-jms=4.0, jmeter-junit=4.0, jmeter-java=4.0, jmeter-ldap=4.0, jmeter-mail=4.0, jmeter-mongodb=4.0, jmeter-native=4.0, jmeter-tcp=4.0, jmeter-components=4.0, jpgc-standard=2.0]
+2020-05-03 17:13:23,595 INFO o.a.j.e.KeyToolUtils: keytool found at 'keytool'
+2020-05-03 17:13:23,596 INFO o.a.j.p.h.p.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file F:\apache-jmeter-x.x\apache-jmeter-4.0\bin\proxyserver.jks
+2020-05-03 17:14:48,837 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-05-03 17:14:48,838 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-05-03 17:14:48,838 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-05-03 17:14:48,843 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-05-03 17:14:48,944 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : FiddlerToJmeter
+2020-05-03 17:14:48,944 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group FiddlerToJmeter.
+2020-05-03 17:14:48,944 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-05-03 17:14:48,944 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 perThread=1000.0 delayedStart=false
+2020-05-03 17:14:48,947 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-05-03 17:14:48,947 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-05-03 17:14:48,949 INFO o.a.j.t.JMeterThread: Thread started: FiddlerToJmeter 1-1
+2020-05-03 17:14:49,967 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = LAPTOP-27UJIKQG
+2020-05-03 17:14:49,977 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2020-05-03 17:14:56,465 INFO o.a.j.p.h.s.LazySchemeSocketFactory: Setting up HTTPS TrustAll Socket Factory
+2020-05-03 17:14:56,469 INFO o.a.j.u.JsseSSLManager: Using default SSL protocol: TLS
+2020-05-03 17:14:56,469 INFO o.a.j.u.JsseSSLManager: SSL session context: per-thread
+2020-05-03 17:14:56,480 INFO o.a.j.u.SSLManager: JmeterKeyStore Location:  type JKS
+2020-05-03 17:14:56,480 INFO o.a.j.u.SSLManager: KeyStore created OK
+2020-05-03 17:14:56,481 WARN o.a.j.u.SSLManager: Keystore file not found, loading empty keystore
+2020-05-03 17:15:11,994 INFO o.a.j.t.JMeterThread: Thread is done: FiddlerToJmeter 1-1
+2020-05-03 17:15:11,995 INFO o.a.j.t.JMeterThread: Thread finished: FiddlerToJmeter 1-1
+2020-05-03 17:15:11,998 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-05-03 17:15:11,999 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
