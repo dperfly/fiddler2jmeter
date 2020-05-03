@@ -1,6 +1,6 @@
 # 项目名称：fiddler 或 Charles 文件转换为 jmeter脚本
 
-解决脚本录制问题,可以将fiddler或Charles转换成对应的jmeter脚本,实现部分内容的参数化配置
+解决脚本录制问题,可以将fiddler或Charles转换成对应的jmeter脚本,实现部分内容的参数化配置，通过修改部分参数或参数化可以对http协议的接口进行自动化测试或简单的压力测试
 
 ## 操作步骤
 1.1 打开Fiddler录制请求<br>
