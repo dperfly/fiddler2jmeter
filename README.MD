@@ -1,6 +1,6 @@
 # Fiddler 或 Charles 文件转换为 Jmeter4.0脚本
 ![Image text](img/img_06.png)<br>
-解决脚本录制问题,可以将Fiddler或Charles转换成对应的Jmeter脚本,实现部分内容的参数化配置，通过修改部分参数或参数化可以对http协议的接口进行自动化测试或简单的压力测试
+解决脚本录制问题,可以将Fiddler或Charles转换成对应的Jmeter脚本,实现部分内容的参数化配置，通过修改部分参数或参数化可以对http协议的接口进行自动化测试或简单的压力测试<br>
 博客地址：https://www.cnblogs.com/fbyyx/p/12827415.html
 ## 操作步骤
 1.1 打开Fiddler/Charles录制请求<br>
