@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'untitled.ui'
+# Form implementation generated from reading ui file 'gui.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.2
 #
@@ -11,7 +11,7 @@ import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 
-import fiddlerSaz_to_jmeterScript
+from start import run
 
 
 class Ui_MainWindow(object):
@@ -145,8 +145,8 @@ class Ui_MainWindow(object):
         input_file = self.select_input_textEdit.toPlainText()
         output_file = self.select_output_textEdit.toPlainText()
         print(filter_url, host_name, input_file, output_file)
-        result = fiddlerSaz_to_jmeterScript.run(saz_file_path=input_file, filter_url=filter_url, host_name=host_name,
-                                                output_jmxScript=output_file)
+        result = run(file_path=input_file, filter_url=filter_url, host_name=host_name,
+                     output_jmxScript=output_file)
         self.cmd_result.setText(result)
 
 

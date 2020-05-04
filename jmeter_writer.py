@@ -195,3 +195,112 @@ class JmeterTemplate:
   <stringProp name="Header.value">{header_value}</stringProp>
 </elementProp>
 '''
+
+
+# jmeter script组装类
+class JmeterWriter(JmeterTemplate):
+    def __set_header_manager(self, header_manager, type):
+        '''
+        组装header manager
+        :param header_manager: []list集合
+        :param type: public：公共部分的header manager
+                    private：单个http sample中的header manager
+        :return: xml header manager string
+        '''
+        if header_manager is None or '':
+            print("http header is None")
+            return ''
+
+        # 组黄 header manager
+        jmx_header_manager = self.header_manager
+        header_manager_values = ''
+        for i in header_manager:
+            header_manager_values = header_manager_values + (
+                self.header_manager_value.format(header_name=i[0], header_value=i[1]))
+        jmx_header_manager = jmx_header_manager.format(header_manager_value=header_manager_values)
+
+        # 如果是public 则是总的公共部分的header manager
+        # 如果不是public 则是每个http sample中的header manager
+        if str(type).lower() == 'public':
+            return jmx_header_manager
+        else:
+            return "<hashTree>" + jmx_header_manager + "</hashTree>"
+
+    def __set_request(self, select_data, public_header):
+        '''
+        组装 request 部分
+        :param select_data: http数据list
+        :param public_header: 公共的header
+        :return: 组装好的 jmeter script http sample部分
+        '''
+        _, domain = self.__set_test_plan(select_data)
+        all_request = ''
+        for request_data in select_data:
+            # 组装get
+            if request_data['method'].lower() == 'get':
+                all_request = all_request + self.get_sampler.format(
+                    server_name="${" + str(domain[request_data['server_name']]) + "}",  # 参数化设置domain,
+                    port_number=request_data['port_number'] or '',
+                    protocol_http=request_data['protocol_http'] or 'http',
+                    encoding=request_data['encoding'] or '',
+                    path=request_data['path'] or '',
+                    method=request_data['method'] or '',
+                    follow_redirects=request_data['follow_redirects'] or 'True',
+                    auto_redirects=request_data['auto_redirects'] or 'False',
+                    use_keep_alive=request_data['use_keep_alive'] or 'True',
+                    DO_MULTIPART_POST=request_data['DO_MULTIPART_POST'] or 'False',
+                )
+            # 组装post
+            elif request_data['method'].lower() == 'post':
+                all_request = all_request + self.post_sampler.format(
+                    post_value=request_data['post_value'] or '',
+                    server_name="${" + str(domain[request_data['server_name']]) + "}",  # 参数化设置domain
+                    port_number=request_data['port_number'] or '',
+                    protocol_http=request_data['protocol_http'] or 'http',
+                    encoding=request_data['encoding'] or '',
+                    path=request_data['path'] or '',
+                    method=request_data['method'] or '',
+                    follow_redirects=request_data['follow_redirects'] or 'True',
+                    auto_redirects=request_data['auto_redirects'] or 'False',
+                    use_keep_alive=request_data['use_keep_alive'] or 'True',
+                    DO_MULTIPART_POST=request_data['DO_MULTIPART_POST'] or 'False',
+                )
+            else:
+                print('暂不支持的请求类型，method 为 {}'.format(request_data['method'].lower()))
+            # 设置不同地方的header内容
+            difference_header = list(set(request_data['Header']).difference(set(public_header)))
+            all_request = all_request + self.__set_header_manager(difference_header, 'private')
+        return all_request
+
+    def __set_test_plan(self, select_data):
+        '''
+        组装test plan部分，设置domain 后续进行${domain}参数化
+        :param select_data:
+        :return: jmeter script test plan xml str,
+                domain list
+        '''
+        test_plan_domain_value = ''
+        domain = {}
+        i = 1
+        for data in select_data:
+            if data['server_name'] not in domain.keys():
+                test_plan_domain_value = test_plan_domain_value + self.test_plan_value.format(
+                    domain_value=data['server_name'],
+                    domain="domian" + str(i))
+                domain[data['server_name']] = "domian" + str(i)
+                i = i + 1
+        return self.test_plan.format(test_plan_value=test_plan_domain_value), domain
+
+    def get_jmeter_script(self, select_data, public_header_manager):
+        '''
+        模板总装成jmxScript 脚本
+        TODO 根据不同版本适应 暂时使用4.0的版本
+        :param select_data:
+        :param public_header_manager:
+        :return:
+        '''
+        return self.temp.format(
+            test_plan=self.__set_test_plan(select_data)[0],
+            thread_group=self.thread_group,
+            sample_data_list=self.__set_request(select_data, public_header_manager),
+            header_manager=self.__set_header_manager(public_header_manager, 'public'))
