@@ -1,4 +1,4 @@
-# fiddler 或 Charles 文件转换为 jmeter脚本
+# Fiddler 或 Charles 文件转换为 Jmeter4.0脚本
 ![Image text](img/img_06.png)<br>
 解决脚本录制问题,可以将Fiddler或Charles转换成对应的Jmeter脚本,实现部分内容的参数化配置，通过修改部分参数或参数化可以对http协议的接口进行自动化测试或简单的压力测试
 ## 操作步骤
@@ -28,8 +28,9 @@
 1.注意HTTPS 抓包工具需要安装证书否则导出的请求的method 为 CONNECT，执行脚本时会忽略CONNECT<br>
 2.根据导入文件的后缀进行判断切记不要改后缀名<br>
 3.有bug记得邮件告知或者微信：dongpengfei826153155@gmail.com 记得附带脚本方便定位问题<br>
+4.目前只考虑windows系统
 ![Image text](img/img_09.jpg)<br>
 ## TODO
 1.目前只支持GET和POST请求<br>
 2.jmeter低版本暂不支持,目前导出的脚本是jmeter4.0,可以导出后手动转换脚本，后续完善<br>
-
+3.Charles其他格式的支持<br>
