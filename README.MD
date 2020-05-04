@@ -28,7 +28,7 @@
 1.注意HTTPS 抓包工具需要安装证书否则导出的请求的method 为 CONNECT，执行脚本时会忽略CONNECT<br>
 2.根据导入文件的后缀进行判断切记不要改后缀名<br>
 3.有bug记得邮件告知或者微信：dongpengfei826153155@gmail.com 记得附带脚本方便定位问题<br>
-4.目前只考虑windows系统
+4.目前只考虑windows系统<br>
 ![Image text](img/img_09.jpg)<br>
 ## TODO
 1.目前只支持GET和POST请求<br>
