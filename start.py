@@ -15,14 +15,13 @@ def run(file_path, filter_url, host_name, output_jmxScript):
     if filter_url == "":
         return 'filter_url内容为空'
 
-    try:
-        if file_path.endswith(".saz"):
-            f = FiddlerReader(file_path)
+    if file_path.endswith(".saz"):
+        f = FiddlerReader(file_path)
 
-        elif file_path.endswith(".chlsj"):
-            f = CharlesReader(file_path)
-    except IOError as io:
-        return "导入文件不存在{},或为不支持的后缀名，目前fiddler文件支持saz格式，charles支持chlsj格式".format(saz_file_path)
+    elif file_path.endswith(".chlsj"):
+        f = CharlesReader(file_path)
+    else:
+        return "导入文件不存在{},或为不支持的后缀名，目前fiddler文件支持saz格式，charles支持chlsj格式".format(file_path)
 
     jmeter_data = f.get_jmeter_data()
     clear = DataClean(jmeter_data)
@@ -47,10 +46,10 @@ if __name__ == '__main__':
     fiddler_touch_path = os.path.join(run_path, 'fiddler')
     result_touch_path = os.path.join(run_path, 'result')
     charles_touch_path = os.path.join(run_path, 'charles')
-    saz_file_path = charles_touch_path + R"\test2.chlsj"
+    saz_file_path = charles_touch_path + R"\test.chlsj"
 
     filter_url = R"/(.*)\.(css|ico|jpg|png|gif|bmp|wav|js|jpe)(\?.*)?$"
     host_name = R"^.*$"  # R'^livetv\.sx$'
 
-    output_jmxScript = result_touch_path + R'\charles2_to_jmeter.jmx'
+    output_jmxScript = result_touch_path + R'\charles_to_jmeter.jmx'
     run(saz_file_path, filter_url, host_name, output_jmxScript)
