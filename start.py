@@ -15,6 +15,12 @@ def run(file_path, filter_url, host_name, output_jmxScript):
     if filter_url == "":
         return 'filter_url内容为空'
 
+    # 解决可执行文件直接拖拽文件导致的闪退问题
+    if file_path.startswith('file:///'):
+        file_path = file_path[8:]
+    if output_jmxScript.startswith('file:///'):
+        output_jmxScript = output_jmxScript[8:]
+
     if file_path.endswith(".saz"):
         f = FiddlerReader(file_path)
 
