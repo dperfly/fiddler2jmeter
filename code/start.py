@@ -58,4 +58,4 @@ if __name__ == '__main__':
     host_name = R"^.*$"  # R'^livetv\.sx$'
 
     output_jmxScript = result_touch_path + R'\charles_to_jmeter.jmx'
-    run(saz_file_path, filter_url, host_name, output_jmxScript)
+    run(R"C:\Users\dongp\Desktop\竞拍.saz", filter_url, host_name, R"C:\Users\dongp\Desktop\竞拍.jmx")

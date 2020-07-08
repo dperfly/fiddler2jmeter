@@ -143,7 +143,12 @@ class FiddlerReader(Reader):
 
                 # TODO 目前支持windows系统
                 s = str(header).replace(r'\r\n', '')
-                s = re.findall("^b\'(.*)\'", s)[0]
+                print(s)
+                try:
+                    s = re.findall("^b\'(.*)\'", s)[0]
+                except Exception as e:
+                    print(e)
+                    continue
                 if s == '' or None:
                     pass
                 # ': ' 对应的是请求header
