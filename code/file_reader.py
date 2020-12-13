@@ -194,24 +194,33 @@ class CharlesReader(Reader):
         for data in charles_data:
             if str(data['method']).lower() == 'connect':
                 pass
+            if str(data['protocolVersion']) == 'HTTP/2.0':
+                # TODO 后续处理charles http2.0 / IPv6的兼容
+                pass
             else:
-                headers = data['request']['header']['headers']
-                first_line = data['request']['header']['firstLine']
-                print(headers)
-                http_dict = {
-                    'server_name': data['host'] if data['host'] != '' else None,
-                    'port_number': data['actualPort'] if data['actualPort'] != '' else None,
-                    'protocol_http': data['scheme'] if data['scheme'] != '' else None,
-                    'encoding': None,
-                    'path': self._set_request_line(first_line)['path'],
-                    'method': data['method'] if data['method'] != '' else None,
-                    'follow_redirects': True,
-                    'auto_redirects': False,
-                    'use_keep_alive': True,
-                    'DO_MULTIPART_POST': False,
-                    'post_value': None,
-                    'Cookie': None,
-                    'Header': [(i['name'], html.escape(i['value'])) for i in headers]
-                }
-                jmeter_data.append(http_dict)
+                try:
+                    # print(data)
+                    headers = data['request']['header']['headers']
+                    first_line = data['request']['header']['firstLine']
+
+                    http_dict = {
+                        'server_name': data['host'] if data['host'] != '' else None,
+                        'port_number': data['actualPort'] if data['actualPort'] != '' else None,
+                        'protocol_http': data['scheme'] if data['scheme'] != '' else None,
+                        'encoding': None,
+                        'path': self._set_request_line(first_line)['path'],
+                        'method': data['method'] if data['method'] != '' else None,
+                        'follow_redirects': True,
+                        'auto_redirects': False,
+                        'use_keep_alive': True,
+                        'DO_MULTIPART_POST': False,
+                        'post_value': None,
+                        'Cookie': None,
+                        'Header': [(i['name'], html.escape(i['value'])) for i in headers]
+                    }
+                    jmeter_data.append(http_dict)
+                except Exception as e:
+                    # 硬处理处理不了的数据
+                    print("Error:{}".format(e))
+                    continue
         return jmeter_data

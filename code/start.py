@@ -29,7 +29,7 @@ def run(file_path, filter_url, host_name, output_jmxScript):
     else:
         return "导入文件不存在{},或为不支持的后缀名，目前fiddler文件支持saz格式，charles支持chlsj格式".format(file_path)
 
-    jmeter_data = f.get_jmeter_data()
+    jmeter_data = f.get_jmeter_data
     clear = DataClean(jmeter_data)
     select_data = clear.select_jmeter_data(host_name, filter_url)
     public_header_manager = clear.get_header_parameter(select_data, host_name)
@@ -48,11 +48,11 @@ def run(file_path, filter_url, host_name, output_jmxScript):
 if __name__ == '__main__':
     import os
 
-    run_path = os.path.dirname(os.path.realpath(__file__))
+    run_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     fiddler_touch_path = os.path.join(run_path, 'fiddler')
     result_touch_path = os.path.join(run_path, 'result')
     charles_touch_path = os.path.join(run_path, 'charles')
-    saz_file_path = charles_touch_path + R"\test.chlsj"
+    saz_file_path = charles_touch_path + R"\test_baidu.chlsj"
 
     filter_url = R"/(.*)\.(css|ico|jpg|png|gif|bmp|wav|js|jpe)(\?.*)?$"
     host_name = R"^.*$"  # R'^livetv\.sx$'
