@@ -192,11 +192,8 @@ class CharlesReader(Reader):
         charles_data = self.__get_charles_data()
         jmeter_data = []
         for data in charles_data:
-            if str(data['method']).lower() == 'connect':
-                pass
-            if str(data['protocolVersion']) == 'HTTP/2.0':
-                # TODO 后续处理charles http2.0 / IPv6的兼容
-                pass
+            if str(data['method']).lower() == 'connect' or  str(data['protocolVersion']) == 'HTTP/2.0':
+                continue
             else:
                 try:
                     # print(data)
