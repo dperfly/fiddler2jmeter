@@ -35,4 +35,8 @@
 1.目前只支持GET和POST请求<br>
 2.jmeter低版本暂不支持,目前导出的脚本是jmeter4.0以上版本,可以导出后手动转换低版本jmeter脚本，后续完善<br>
 3.Charles其他格式的支持<br>
-4.Charles暫不支持http2.0
+4.Charles暂时不支持http2.0,直接过滤处理
+
+## ENV
+python >=  3.6  
+PyQt5  ==  5.15.2
