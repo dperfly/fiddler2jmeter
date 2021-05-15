@@ -184,6 +184,12 @@ class CharlesReader(Reader):
         data = json.load(open(self.chls_file_path, encoding='utf-8'))
         return data
 
+    def __get_charles_request_body(self, request: dict):
+        if "body" in request.keys():
+            return request['body']['text']
+        else:
+            return None
+
     def get_jmeter_data(self):
         '''
         获取charles的数据，默认去掉connect
@@ -192,14 +198,14 @@ class CharlesReader(Reader):
         charles_data = self.__get_charles_data()
         jmeter_data = []
         for data in charles_data:
-            if str(data['method']).lower() == 'connect' or  str(data['protocolVersion']) == 'HTTP/2.0':
+            if str(data['method']).lower() == 'connect' or str(data['protocolVersion']) == 'HTTP/2.0':
                 continue
             else:
                 try:
                     # print(data)
-                    headers = data['request']['header']['headers']
-                    first_line = data['request']['header']['firstLine']
-
+                    request_data = data['request']
+                    headers = request_data['header']['headers']
+                    first_line = request_data['header']['firstLine']
                     http_dict = {
                         'server_name': data['host'] if data['host'] != '' else None,
                         'port_number': data['actualPort'] if data['actualPort'] != '' else None,
@@ -211,7 +217,7 @@ class CharlesReader(Reader):
                         'auto_redirects': False,
                         'use_keep_alive': True,
                         'DO_MULTIPART_POST': False,
-                        'post_value': None,
+                        'post_value': self.__get_charles_request_body(request_data),
                         'Cookie': None,
                         'Header': [(i['name'], html.escape(i['value'])) for i in headers]
                     }
