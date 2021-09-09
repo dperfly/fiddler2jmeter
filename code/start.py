@@ -37,12 +37,14 @@ def run(file_path, filter_url, host_name, output_jmxScript):
     jmx_script = jw.get_jmeter_script(select_data, public_header_manager)
 
     try:
-        with open(output_jmxScript, 'w') as o:
+        with open(output_jmxScript, 'w', encoding='utf-8') as o:
             o.write(str(jmx_script))
     except IOError as io:
         return "导出jmx文件不存在：{}".format(output_jmxScript)
 
     return "生成成功文件地址为:{}\n内容如下：\n\n{}".format(output_jmxScript, jmx_script)
+
+
 if __name__ == '__main__':
     import os
 
@@ -56,5 +58,5 @@ if __name__ == '__main__':
     host_name = R"^.*$"  # R'^livetv\.sx$'
 
     output_jmxScript = result_touch_path + R'\charles_to_jmeter.jmx'
-    print(saz_file_path,filter_url,host_name,output_jmxScript)
+    print(saz_file_path, filter_url, host_name, output_jmxScript)
     run(saz_file_path, filter_url, host_name, output_jmxScript)
