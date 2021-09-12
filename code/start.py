@@ -3,7 +3,7 @@ from code.data_clean import DataClean
 from code.jmeter_writer import JmeterWriter
 
 
-def run(file_path, filter_url, host_name, output_jmxScript):
+def run(file_path, filter_url, host_name, output_jmxScript, distinct):
     # filter_url = R"/(.*)\.(css|ico|jpg|png|gif|bmp|wav|js|jpe)(\?.*)?$"
     # host_name = R'^livetv\.sx$'
     if file_path == "":
@@ -31,7 +31,7 @@ def run(file_path, filter_url, host_name, output_jmxScript):
 
     jmeter_data = f.get_jmeter_data()
     clear = DataClean(jmeter_data)
-    select_data = clear.select_jmeter_data(host_name, filter_url)
+    select_data = clear.select_jmeter_data(host_name, filter_url, distinct)
     public_header_manager = clear.get_header_parameter(select_data, host_name)
     jw = JmeterWriter()
     jmx_script = jw.get_jmeter_script(select_data, public_header_manager)

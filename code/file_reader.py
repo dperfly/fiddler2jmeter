@@ -199,10 +199,10 @@ class CharlesReader(Reader):
         jmeter_data = []
         for data in charles_data:
             if str(data['method']).lower() == 'connect' or str(data['protocolVersion']) == 'HTTP/2.0':
+                # TODO  charles to jmeter：目前不支持http2.0,会自动过滤掉
                 continue
             else:
                 try:
-                    # print(data)
                     request_data = data['request']
                     headers = request_data['header']['headers']
                     first_line = request_data['header']['firstLine']
