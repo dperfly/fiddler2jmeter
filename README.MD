@@ -1,42 +1,52 @@
-# Fiddler 或 Charles 文件转换为 Jmeter4.0以上脚本
+# Fiddler or Charles to Jmeter Script
 ![Image text](img/img_06.png)<br>
-解决脚本录制问题,可以将Fiddler或Charles转换成对应的Jmeter脚本,实现部分内容的参数化配置，通过修改部分参数或参数化可以对http协议的接口进行自动化测试或简单的压力测试<br>
-博客地址：https://www.cnblogs.com/fbyyx/p/12827415.html
-## 操作步骤
-1.1 打开Fiddler/Charles录制请求<br>
-1.1.1 Fiddler录制<br>
+To solve the problem of script recording , you can convert Fiddler or Charles into the corresponding Jmeter script to realize the parameterization of partial content. By modifying some parameters or parameterization can perform automation test or simple stress test for the interface of HTTP protocol.<br>
+
+Chinese documents(中文文档)：https://www.cnblogs.com/fbyyx/p/12827415.html
+
+## Steps
+1.1 Open Fiddler/Charles to record the request<br>
+1.1.1 Recording Fiddler<br>
 ![Image text](img/img_01.jpg)<br>
-1.1.2 Charles录制<br>
+1.1.2 Recording Charles<br>
 ![Image text](img/img_08.jpg)<br>
-1.2 将需要的HTTP请求导出<br>
-1.2.1 Fiddler导出为saz格式<br>
+1.2 Export needed HTTP request<br>
+1.2.1 Export Fiddler recording as saz format<br>
 ![Image text](img/img_02.jpg)<br>
-1.2.1 Charles导出为chlsj格式<br>
+1.2.1 Export Charles recording as chlsj format<br>
 ![Image text](img/img_07.jpg)<br>
-1.3 执行脚本<br>
-1.3.1 参数说明<br>
-1.3.1.1 需要导入的文件：saz文件（Fiddler文件）,chlsj(Charles文件)<br>
-1.3.1.2 需要到处的文件：jmx文件（生成的jmeter脚本文件）<br>
-1.3.1.3 过滤Http请求：不满足host则过滤，为正则匹配方式<br>
-1.3.1.4 过滤Http请求，通过/path部分，满足则过滤，为正则匹配方式<br>
-1.3.2 页面效果<br>
+1.3 Execute script<br>
+1.3.1 Parameter elucidation<br>
+1.3.1.1 Files to import: saz files(Fiddler files), chlsi files(Charles files)<br>
+1.3.1.2 Files to export: jmx files(Generated Jmeter script file)<br>
+1.3.1.3 Filter HTTP request: regex mode<br>
+1.3.2 Page effect<br>
 ![Image text](img/img_03.jpg)<br>
-1.3.3 结果展示<br>
+1.3.3 Conversion results<br>
 ![Image text](img/img_04.jpg)<br>
-1.4 jmeter运行结果<br>
+1.4 Run JMeter results<br>
 ![Image text](img/img_05.jpg)<br>
-## 注意
-1.注意HTTPS 抓包工具需要安装证书否则导出的请求的method 为 CONNECT，执行脚本时会忽略CONNECT<br>
-2.根据导入文件的后缀进行判断切记不要改后缀名<br>
-3.有bug记得邮件告知或者微信：dongpengfei826153155@gmail.com 记得附带Fiddler或者Charles导出文件,方便定位问题<br>
-4.目前只考虑windows系统<br>
-![Image text](img/img_09.jpg)<br>
+## Remarks
+1.Ignore data with method connect.<br>
+2.Only Windows systems are supported.<br>
+3.Only GET and POST requests are supported.<br>
+4.JMeter version greater than 4.0 is required.<br>
+5.Charles doesn't support http2.0 conversion, so it's filtered out directly.<br>
+
 ## TODO
-1.目前只支持GET和POST请求<br>
-2.jmeter低版本暂不支持,目前导出的脚本是jmeter4.0以上版本,可以导出后手动转换低版本jmeter脚本，后续完善<br>
-3.Charles其他格式的支持<br>
-4.Charles暂时不支持http2.0,直接过滤处理
+1.Support for Charles other file formats<br>
+2.Run as a fiddler plug-in with FiddlerScript<br>
+
 
 ## ENV
+```buildoutcfg
 python >=  3.6  
 PyQt5  ==  5.15.2
+```
+
+## Contact Information
+1.Issues.<br>
+2.WeChat ID:dongpengfei826153155<br>
+![Image text](img/img_09.jpg)<br>
+3.E-mail: dongpengfei826153155@gmail.com<br>
+
