@@ -47,6 +47,5 @@ PyQt5  ==  5.15.2
 ## Contact Information
 1.Issues.<br>
 2.WeChat ID:dongpengfei826153155<br>
-![Image text](img/img_09.jpg)<br>
 3.E-mail: dongpengfei826153155@gmail.com<br>
 
