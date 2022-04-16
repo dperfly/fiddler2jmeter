@@ -5,7 +5,7 @@
 
 [README_en.md](README_en.md)
 ### 下载地址
-
+【FiddlerorCharles2jmeter.exe】1.1.0 可执行文件[下载地址](https://github.com/dperfly/fiddler2jmeter/releases/tag/1.1.0)
 
 ### GUI页面操作方式
 1.1 打开Fiddler/Charles录制请求<br>
