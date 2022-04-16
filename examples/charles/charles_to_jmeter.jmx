@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+<hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+  <stringProp name="TestPlan.comments"></stringProp>
+  <boolProp name="TestPlan.functional_mode">false</boolProp>
+  <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+  <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+  <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <collectionProp name="Arguments.arguments">
+    <elementProp name="domian1" elementType="Argument">
+    <stringProp name="Argument.name">domian1</stringProp>
+    <stringProp name="Argument.value">m-center-uat-linli.timesgroup.cn</stringProp>
+    <stringProp name="Argument.metadata">=</stringProp>
+  </elementProp>
+
+    </collectionProp>
+  </elementProp>
+  <stringProp name="TestPlan.user_define_classpath"></stringProp>
+</TestPlan>
+
+    <hashTree>
+    <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="FiddlerToJmeter" enabled="true">
+<stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+<elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+  <boolProp name="LoopController.continue_forever">false</boolProp>
+  <stringProp name="LoopController.loops">1</stringProp>
+</elementProp>
+<stringProp name="ThreadGroup.num_threads">1</stringProp>
+<stringProp name="ThreadGroup.ramp_time">1</stringProp>
+<boolProp name="ThreadGroup.scheduler">false</boolProp>
+<stringProp name="ThreadGroup.duration"></stringProp>
+<stringProp name="ThreadGroup.delay"></stringProp>
+</ThreadGroup>
+
+    <hashTree>
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">1000</stringProp>
+            </ConstantTimer>
+            <hashTree/>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+  <collectionProp name="HeaderManager.headers">
+    <elementProp name="" elementType="Header">
+  <stringProp name="Header.name">Accept</stringProp>
+  <stringProp name="Header.value">*/*</stringProp>
+</elementProp>
+<elementProp name="" elementType="Header">
+  <stringProp name="Header.name">Connection</stringProp>
+  <stringProp name="Header.value">keep-alive</stringProp>
+</elementProp>
+<elementProp name="" elementType="Header">
+  <stringProp name="Header.name">Host</stringProp>
+  <stringProp name="Header.value">m-center-uat-linli.timesgroup.cn</stringProp>
+</elementProp>
+<elementProp name="" elementType="Header">
+  <stringProp name="Header.name">Accept-Encoding</stringProp>
+  <stringProp name="Header.value">gzip, deflate, br</stringProp>
+</elementProp>
+<elementProp name="" elementType="Header">
+  <stringProp name="Header.name">Accept-Language</stringProp>
+  <stringProp name="Header.value">zh-Hans-CN;q=1</stringProp>
+</elementProp>
+<elementProp name="" elementType="Header">
+  <stringProp name="Header.name">User-Agent</stringProp>
+  <stringProp name="Header.value">uat/1.1.0 (iPhone; iOS 14.1; Scale/3.00)</stringProp>
+</elementProp>
+<elementProp name="" elementType="Header">
+  <stringProp name="Header.name">Authorization</stringProp>
+  <stringProp name="Header.value">Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiIxNjgxMDEwMTAwNCIsInNjb3BlIjpbImFsbCJdLCJpZCI6MjMwMDc5ODE5MjE2NzQyMDI5NCwiZXhwIjoxNjA5Mzc0NjU2LCJhdXRob3JpdGllcyI6WyJ2aXNpdG9yIl0sImp0aSI6IjQ2Yjk0YWMyLWE5MmEtNDQ1NS05NjAxLTEwYzNlZDI4MDdjMSIsImNsaWVudF9pZCI6ImFwcF9jIn0.KiSUWGGxJaU-SOuiFbduFXAg86MFVcqxrBsdIO32GHPAbjLvtQROZbIIQkoVcUhdOn6KrT1RjjVMTqLplFnvJV5FhNW7JQ381EDz-cTe1FOk_Jd2s78LgbGL0iVMBCO-ZNFUy4S4Sm_ZwwIdkDGasEMxAap4oSUuWhF8kCntfmcLTkFykNTF7qVF08GTjcIiQ9tLSRsP131JKCJ7i6FjYVcB8zWj8p3i62EKXQtbuYli_aq14fILKoKJ_eOYt6GrDdc8Zd3Fjp-qnXuglOJU_BbEyDX86rezl8gPGkBlgNOp5yMIKfk1Zo70wZGVg6U048T92mJRExsy0UFBvwevCw</stringProp>
+</elementProp>
+
+  </collectionProp>
+</HeaderManager>
+<hashTree/> 
+        
+            <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+                <collectionProp name="CookieManager.cookies"/>
+                <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+            </CookieManager>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>true</responseData>
+                  <samplerData>true</samplerData>
+                  <xml>true</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>true</responseHeaders>
+                  <requestHeaders>true</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <fileName>true</fileName>
+                  <hostname>true</hostname>
+                  <threadCounts>true</threadCounts>
+                  <sampleCount>true</sampleCount>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+            <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>true</responseData>
+                  <samplerData>true</samplerData>
+                  <xml>true</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>true</responseHeaders>
+                  <requestHeaders>true</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <fileName>true</fileName>
+                  <hostname>true</hostname>
+                  <threadCounts>true</threadCounts>
+                  <sampleCount>true</sampleCount>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${domian1}/times/msg-todo-center/message/api-c/v1/un-read/query" enabled="true">
+  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <collectionProp name="Arguments.arguments"/>
+  </elementProp>
+  <stringProp name="HTTPSampler.domain">${domian1}</stringProp>
+  <stringProp name="HTTPSampler.port">443</stringProp>
+  <stringProp name="HTTPSampler.protocol">https</stringProp>
+  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+  <stringProp name="HTTPSampler.path">/times/msg-todo-center/message/api-c/v1/un-read/query</stringProp>
+  <stringProp name="HTTPSampler.method">GET</stringProp>
+  <boolProp name="HTTPSampler.follow_redirects">True</boolProp>
+  <boolProp name="HTTPSampler.auto_redirects">False</boolProp>
+  <boolProp name="HTTPSampler.use_keepalive">True</boolProp>
+  <boolProp name="HTTPSampler.DO_MULTIPART_POST">False</boolProp>
+  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+</HTTPSamplerProxy>
+<hashTree><HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+  <collectionProp name="HeaderManager.headers">
+    
+  </collectionProp>
+</HeaderManager>
+<hashTree/> 
+        </hashTree><HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${domian1}/times/times-bff/area-emp/api-c/v1/butler/show?appCode=app-c&amp;appVersion=1.1.0&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294" enabled="true">
+  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <collectionProp name="Arguments.arguments"/>
+  </elementProp>
+  <stringProp name="HTTPSampler.domain">${domian1}</stringProp>
+  <stringProp name="HTTPSampler.port">443</stringProp>
+  <stringProp name="HTTPSampler.protocol">https</stringProp>
+  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+  <stringProp name="HTTPSampler.path">/times/times-bff/area-emp/api-c/v1/butler/show?appCode=app-c&amp;appVersion=1.1.0&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294</stringProp>
+  <stringProp name="HTTPSampler.method">GET</stringProp>
+  <boolProp name="HTTPSampler.follow_redirects">True</boolProp>
+  <boolProp name="HTTPSampler.auto_redirects">False</boolProp>
+  <boolProp name="HTTPSampler.use_keepalive">True</boolProp>
+  <boolProp name="HTTPSampler.DO_MULTIPART_POST">False</boolProp>
+  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+</HTTPSamplerProxy>
+<hashTree><HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+  <collectionProp name="HeaderManager.headers">
+    
+  </collectionProp>
+</HeaderManager>
+<hashTree/> 
+        </hashTree><HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${domian1}/times/advert-service/advert/api-c/v1/show?advertAreaId=3&amp;appCode=app-c&amp;appVersion=1.1.0&amp;clientId=app_c&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294" enabled="true">
+  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <collectionProp name="Arguments.arguments"/>
+  </elementProp>
+  <stringProp name="HTTPSampler.domain">${domian1}</stringProp>
+  <stringProp name="HTTPSampler.port">443</stringProp>
+  <stringProp name="HTTPSampler.protocol">https</stringProp>
+  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+  <stringProp name="HTTPSampler.path">/times/advert-service/advert/api-c/v1/show?advertAreaId=3&amp;appCode=app-c&amp;appVersion=1.1.0&amp;clientId=app_c&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294</stringProp>
+  <stringProp name="HTTPSampler.method">GET</stringProp>
+  <boolProp name="HTTPSampler.follow_redirects">True</boolProp>
+  <boolProp name="HTTPSampler.auto_redirects">False</boolProp>
+  <boolProp name="HTTPSampler.use_keepalive">True</boolProp>
+  <boolProp name="HTTPSampler.DO_MULTIPART_POST">False</boolProp>
+  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+</HTTPSamplerProxy>
+<hashTree><HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+  <collectionProp name="HeaderManager.headers">
+    
+  </collectionProp>
+</HeaderManager>
+<hashTree/> 
+        </hashTree><HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${domian1}/times/msg-todo-center/message/api-c/v1/un-read/query" enabled="true">
+  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <collectionProp name="Arguments.arguments"/>
+  </elementProp>
+  <stringProp name="HTTPSampler.domain">${domian1}</stringProp>
+  <stringProp name="HTTPSampler.port">443</stringProp>
+  <stringProp name="HTTPSampler.protocol">https</stringProp>
+  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+  <stringProp name="HTTPSampler.path">/times/msg-todo-center/message/api-c/v1/un-read/query</stringProp>
+  <stringProp name="HTTPSampler.method">GET</stringProp>
+  <boolProp name="HTTPSampler.follow_redirects">True</boolProp>
+  <boolProp name="HTTPSampler.auto_redirects">False</boolProp>
+  <boolProp name="HTTPSampler.use_keepalive">True</boolProp>
+  <boolProp name="HTTPSampler.DO_MULTIPART_POST">False</boolProp>
+  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+</HTTPSamplerProxy>
+<hashTree><HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+  <collectionProp name="HeaderManager.headers">
+    
+  </collectionProp>
+</HeaderManager>
+<hashTree/> 
+        </hashTree><HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${domian1}/times/advert-service/advert/api-c/v1/show?advertAreaId=3&amp;appCode=app-c&amp;appVersion=1.1.0&amp;clientId=app_c&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294" enabled="true">
+  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <collectionProp name="Arguments.arguments"/>
+  </elementProp>
+  <stringProp name="HTTPSampler.domain">${domian1}</stringProp>
+  <stringProp name="HTTPSampler.port">443</stringProp>
+  <stringProp name="HTTPSampler.protocol">https</stringProp>
+  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+  <stringProp name="HTTPSampler.path">/times/advert-service/advert/api-c/v1/show?advertAreaId=3&amp;appCode=app-c&amp;appVersion=1.1.0&amp;clientId=app_c&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294</stringProp>
+  <stringProp name="HTTPSampler.method">GET</stringProp>
+  <boolProp name="HTTPSampler.follow_redirects">True</boolProp>
+  <boolProp name="HTTPSampler.auto_redirects">False</boolProp>
+  <boolProp name="HTTPSampler.use_keepalive">True</boolProp>
+  <boolProp name="HTTPSampler.DO_MULTIPART_POST">False</boolProp>
+  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+</HTTPSamplerProxy>
+<hashTree><HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+  <collectionProp name="HeaderManager.headers">
+    
+  </collectionProp>
+</HeaderManager>
+<hashTree/> 
+        </hashTree><HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${domian1}/times/times-bff/area-emp/api-c/v1/butler/show?appCode=app-c&amp;appVersion=1.1.0&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294" enabled="true">
+  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+    <collectionProp name="Arguments.arguments"/>
+  </elementProp>
+  <stringProp name="HTTPSampler.domain">${domian1}</stringProp>
+  <stringProp name="HTTPSampler.port">443</stringProp>
+  <stringProp name="HTTPSampler.protocol">https</stringProp>
+  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+  <stringProp name="HTTPSampler.path">/times/times-bff/area-emp/api-c/v1/butler/show?appCode=app-c&amp;appVersion=1.1.0&amp;os=2&amp;projectId=2248412888374968908&amp;userId=2300798192167420294</stringProp>
+  <stringProp name="HTTPSampler.method">GET</stringProp>
+  <boolProp name="HTTPSampler.follow_redirects">True</boolProp>
+  <boolProp name="HTTPSampler.auto_redirects">False</boolProp>
+  <boolProp name="HTTPSampler.use_keepalive">True</boolProp>
+  <boolProp name="HTTPSampler.DO_MULTIPART_POST">False</boolProp>
+  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+</HTTPSamplerProxy>
+<hashTree><HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+  <collectionProp name="HeaderManager.headers">
+    
+  </collectionProp>
+</HeaderManager>
+<hashTree/> 
+        </hashTree>
+        </hashTree>
+    </hashTree>
+</hashTree>
+</jmeterTestPlan>
