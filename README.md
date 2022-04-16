@@ -75,3 +75,9 @@ PyQt5  ==  5.15.2
 2.根据导入文件的后缀进行判断切记不要改后缀名<br>
 3.有bug记得邮件告知或者微信：dongpengfei826153155@gmail.com 记得附带Fiddler或者Charles导出文件,方便定位问题<br>
 4.目前只考虑windows系统<br>
+
+
+## 问题反馈
+1.Issues.<br>
+2.微信:dongpengfei826153155<br>
+3.E-mail: dongpengfei826153155@gmail.com<br>
