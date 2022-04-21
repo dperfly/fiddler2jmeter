@@ -9,8 +9,12 @@ import zipfile
 from urllib.parse import urlsplit
 from optparse import OptionParser
 
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+Pyqt5_install = True
+try:
+    from PyQt5 import QtCore, QtWidgets
+    from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+except:
+    Pyqt5_install = False
 
 
 class DataClean:
@@ -858,7 +862,12 @@ if __name__ == '__main__':
 
     if option.no_gui is False:
         # GUI model run
-        runGui()
+        if not Pyqt5_install:
+            print(
+                "Warning: Please install pyqt5:\n\tpip install PyQt5 -i https://pypi.douban.com/simple\n"
+                "or run in no-gui mode:\n\tView help documentation: fiddler2jmeter_start.py -h")
+        else:
+            runGui()
     else:
         if option.input_file_path is None:
             print("fiddler or Charles not found")
