@@ -57,6 +57,19 @@ Options:
 运行成功：
     run success,jmx file saved in : F:\github-home\fiddler2jmeter\charles\test_http_demo.jmx
 ```
+## Fiddler-Script Run
+1.1 Open fiddler and replace fiddlerscript script (copy the contents of fiddlerscript.js into fiddlerscript)<br>
+![Image text](.resources/img/fiddlerScript.png)<br>
+1.2 Modify the script path and JMX file generation path and name in the script<br>
+```text
+// FiddlerCharles2Jmeter.py / FiddlerCharles2Jmeter.exe   PATH
+var py_script_path = "C:/Users/Administrator/fiddler2jmeter/FiddlerCharles2Jmeter.py"
+
+// output jmx fileName
+var jmx_output_file = "C:/Users/Administrator/Desktop/demo.jmx"
+```
+1.3 Select the request to be converted and right-click the fiddle2jmeter button to convert<br>
+![Image text](.resources/img/fiddlerbutton.png)<br>
 
 ## Remarks
 1.Ignore data with method connect.<br>

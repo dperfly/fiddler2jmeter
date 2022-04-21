@@ -64,6 +64,20 @@ Options:
 ## TODO
 1.支持fiddler-script 快速运行，不用导出;
 
+## Fiddler-Script 运行方式
+1.1 打开Fiddler,替换FiddlerScript脚本（将FiddlerScript.js内容复制到FiddlerScript中）<br>
+![Image text](.resources/img/fiddlerScript.png)<br>
+1.2 修改脚本中的脚本路径以及jmx文件生成路径及名称<br>
+```text
+// FiddlerCharles2Jmeter.py / FiddlerCharles2Jmeter.exe   PATH
+var py_script_path = "C:/Users/Administrator/fiddler2jmeter/FiddlerCharles2Jmeter.py"
+
+// output jmx fileName
+var jmx_output_file = "C:/Users/Administrator/Desktop/demo.jmx"
+```
+1.3 选择需要转换的请求,右键选择fiddler2jmeter按钮,进行转换<br>
+![Image text](.resources/img/fiddlerbutton.png)<br>
+
 ## ENV
 ```buildoutcfg
 python >=  3.6  

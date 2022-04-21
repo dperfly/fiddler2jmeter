@@ -1,12 +1,12 @@
 import sys
 import os
 import re
-
+import time
 import html
 import json
 import zipfile
 
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, unquote
 from optparse import OptionParser
 
 Pyqt5_install = True
@@ -83,6 +83,7 @@ class Reader:
         :param request_line:
         eg:
             GET https://www.eg.com:8080/search?a=1&b=2 HTTP/1.1
+            GET /search?a=1&b=2 HTTP/1.1
         :return:
         eg:
             http_requset_dict = {
@@ -94,11 +95,11 @@ class Reader:
                                 }
         '''
         http_requset_dict = {
-            'server_name': None,
-            'port_number': None,
-            'protocol_http': None,
-            'path': None,
-            'method': None,
+            'server_name': "",
+            'port_number': "",
+            'protocol_http': "",
+            'path': "",
+            'method': "",
         }
         request_line = re.findall("(.*) (.*) (.*)", request_line)[0]
         if len(request_line) == 3:
@@ -108,10 +109,16 @@ class Reader:
             path = str(url_split.path) if str(url_split.query) == '' else str(url_split.path) + "?" + str(
                 url_split.query)  # path = /index.html?a=10&b=20 or /index.html
 
-            http_requset_dict['server_name'] = html.escape(str(url_split.hostname))
-            http_requset_dict['path'] = html.escape(str(path))
-            http_requset_dict['protocol_http'] = html.escape(str(url_split.scheme))
-            http_requset_dict['port_number'] = html.escape(str(url_split.port))
+            http_requset_dict['server_name'] = html.escape(
+                str(url_split.hostname)) if url_split.hostname is not None else ""
+
+            http_requset_dict['path'] = html.escape(str(path)) if path is not None else ""
+
+            http_requset_dict['protocol_http'] = html.escape(
+                str(url_split.scheme)) if url_split.scheme is not None else "http"
+
+            http_requset_dict['port_number'] = html.escape(str(url_split.port)) if url_split.port is not None else ""
+
             http_requset_dict['method'] = method
 
             return http_requset_dict
@@ -238,6 +245,66 @@ class FiddlerReader(Reader):
 
                         http_dict['Header'].append((lists[0][0], html.escape(lists[0][1])))
                     else:
+                        http_value += s
+            http_dict['post_value'] = html.escape(str(http_value))
+        return http_dict
+
+
+# fiddler script 数据处理
+class FiddlerScriptReader(Reader):
+    def __init__(self, args):
+        self.url_data_lists = [unquote(i).split("\n") for i in args]
+
+    def get_jmeter_data(self):
+        return [self.get_request_line_dict(request_data) for request_data in self.url_data_lists]
+
+    def get_request_line_dict(self, request_data):
+        is_data = False
+        is_header_first = True
+        http_dict = {
+            'server_name': None,
+            'port_number': None,
+            'protocol_http': None,
+            'encoding': None,
+            'path': None,
+            'method': None,
+            'follow_redirects': True,
+            'auto_redirects': False,
+            'use_keep_alive': True,
+            'DO_MULTIPART_POST': False,
+            'post_value': None,
+            'Cookie': None,
+            'Header': []
+        }
+        http_value = ''
+        if "CONNECT" in str(request_data[0]):
+            pass
+        else:
+            for s in request_data:
+                # method uri version row
+                if is_header_first is True:
+                    request_line_dict = self._set_request_line(s)
+                    http_dict.update(request_line_dict)
+                    is_header_first = False
+                else:
+                    # space row
+                    if s == '' or None:
+                        is_data = True
+                    # header row
+                    if ': ' in s and is_data is False:
+                        # Get request header
+                        lists = re.findall("^(.*): (.*)$", s)
+
+                        if lists[0][0] == "Host":
+                            http_dict["server_name"] = str(lists[0][1]).strip()
+
+                        # TODO The cookie is directly stored in the header manger
+                        # if lists[0][0] == 'Cookie':
+                        #    pass
+
+                        http_dict['Header'].append((str(lists[0][0]).strip(), html.escape(str(lists[0][1]).strip())))
+                    else:
+
                         http_value += s
             http_dict['post_value'] = html.escape(str(http_value))
         return http_dict
@@ -551,7 +618,7 @@ class JmeterWriter(JmeterTemplate):
                     DO_MULTIPART_POST=request_data['DO_MULTIPART_POST'] or 'False',
                 )
             # post
-            elif request_data['method'].lower() == 'post':
+            else:
                 all_request = all_request + self.post_sampler.format(
                     post_value=request_data['post_value'] or '',
                     server_name="${" + str(domain[request_data['server_name']]) + "}",  # setting domain
@@ -565,8 +632,8 @@ class JmeterWriter(JmeterTemplate):
                     use_keep_alive=request_data['use_keep_alive'] or 'True',
                     DO_MULTIPART_POST=request_data['DO_MULTIPART_POST'] or 'False',
                 )
-            else:
-                print('Unsupported request type，method : {}'.format(request_data['method'].lower()))
+            # else:
+            #     print('Unsupported request type，method : {}'.format(request_data['method'].lower()))
             # 设置不同地方的header内容
             difference_header = list(set(request_data['Header']).difference(set(public_header)))
             all_request = all_request + self.__set_header_manager(difference_header, 'private')
@@ -604,10 +671,10 @@ class JmeterWriter(JmeterTemplate):
             header_manager=self.__set_header_manager(public_header_manager, 'public'))
 
 
-def run(file_path, filter_url, host_name, output_jmxScript, distinct):
+def run(file_path, filter_url, host_name, output_jmxScript, distinct, args=None):
     # filter_url = R"/(.*)\.(css|ico|jpg|png|gif|bmp|wav|js|jpe)(\?.*)?$"
     # host_name = R'^livetv\.sx$'
-    if file_path == "":
+    if file_path == "" and args is None:
         return 'input file path cannot be empty'
     if output_jmxScript == "":
         return 'output_jmxScript cannot be empty'
@@ -617,18 +684,19 @@ def run(file_path, filter_url, host_name, output_jmxScript, distinct):
         return 'filter_url cannot be empty'
 
     # fix drag file bug
-    if file_path.startswith('file:/'):
+    if file_path is not None and file_path.startswith('file:/'):
         file_path = file_path[6:]
-    if file_path.startswith('//'):
+    if file_path is not None and file_path.startswith('//'):
         file_path = file_path[2:]
     if output_jmxScript.startswith('file:/'):
         output_jmxScript = output_jmxScript[6:]
     if output_jmxScript.startswith('//'):
         output_jmxScript = output_jmxScript[2:]
 
-    if file_path.endswith(".saz"):
+    if file_path is None and args is not None:
+        f = FiddlerScriptReader(args)
+    elif file_path.endswith(".saz"):
         f = FiddlerReader(file_path)
-
     elif file_path.endswith(".chlsj"):
         f = CharlesReader(file_path)
     else:
@@ -642,11 +710,9 @@ def run(file_path, filter_url, host_name, output_jmxScript, distinct):
     jw = JmeterWriter()
     jmx_script = jw.get_jmeter_script(select_data, public_header_manager)
 
-    try:
-        with open(output_jmxScript, 'w', encoding='utf-8') as o:
-            o.write(str(jmx_script))
-    except IOError as io:
-        return f"output_jmxScript Exported script not found：{output_jmxScript}"
+    with open(output_jmxScript, 'w', encoding='utf-8') as o:
+        o.write(str(jmx_script))
+
     return f"run success,jmx file saved in : {output_jmxScript}\njmx content：\n\n{jmx_script}"
 
 
@@ -858,6 +924,14 @@ if __name__ == '__main__':
                          default=False,
                          help="distinct: Filter duplicate requests , default=%default"
                          )
+    # is fiddler4 client run
+    optParser.add_option("-s",
+                         "--is-fiddler-script-model",
+                         action='store_true',
+                         default=False,
+                         dest='fiddler_script_model',
+                         help="fiddler script model :default=%default"
+                         )
     (option, args) = optParser.parse_args()
 
     if option.no_gui is False:
@@ -869,7 +943,7 @@ if __name__ == '__main__':
         else:
             runGui()
     else:
-        if option.input_file_path is None:
+        if option.input_file_path is None and option.fiddler_script_model is False:
             print("fiddler or Charles not found")
             exit(-1)
         if option.output_jmxScript is None:
@@ -882,7 +956,7 @@ if __name__ == '__main__':
         output_jmxScript = option.output_jmxScript
         distinct = option.distinct
 
-        if not os.path.isabs(input_file_path):
+        if option.input_file_path is not None and not os.path.isabs(input_file_path):
             input_file_path = os.path.abspath(os.path.dirname(input_file_path))
             if not os.path.isfile(input_file_path):
                 print("input_file_path is not found. "
@@ -898,6 +972,10 @@ if __name__ == '__main__':
                       f"\nerror path: {os.path.dirname(output_jmxScript)}")
                 exit(-1)
 
-        run(input_file_path, filter_url, host_name, output_jmxScript, distinct)
+        run(input_file_path, filter_url, host_name, output_jmxScript, distinct, args)
 
         print(f"run success,jmx file saved in : {output_jmxScript}")
+
+        # View results
+        if option.fiddler_script_model is True:
+            time.sleep(3)
