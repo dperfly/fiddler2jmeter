@@ -3,7 +3,7 @@ import System.Windows.Forms;
 import Fiddler;
 
 // FiddlerCharles2Jmeter.py / FiddlerCharles2Jmeter.exe   PATH
-var py_script_path = "C:/Users/Administrator/fiddler2jmeter/FiddlerCharles2Jmeter.py"
+var exe_script_path = "C:/Users/Administrator/Desktop/FiddlerCharles2Jmeter.exe"
 
 // output jmx fileName
 var jmx_output_file = "C:/Users/Administrator/Desktop/demo.jmx"
@@ -58,7 +58,7 @@ class Handlers
     // fiddler to jmeter jmx func.
     public static ContextAction("fiddler2jmeter")
     function Fiddler2Jmx(oSessions: Fiddler.Session[]){
-        var fiddler2jmeter_cmd =py_script_path+" " + "-n -s -o"+ " "+jmx_output_file+" " ;
+        var fiddler2jmeter_cmd =exe_script_path+" " + "-n -s -o"+ " "+jmx_output_file+" " ;
         var request_escape_list="";
         for (var x = 0; x < oSessions.Length; x++){
             var session = oSessions[x];
