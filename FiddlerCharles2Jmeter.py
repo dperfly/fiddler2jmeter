@@ -884,7 +884,20 @@ if __name__ == '__main__':
 
         if not os.path.isabs(input_file_path):
             input_file_path = os.path.abspath(os.path.dirname(input_file_path))
+            if not os.path.isfile(input_file_path):
+                print("input_file_path is not found. "
+                      "Check whether there are special characters, such as special spaces..."
+                      f"\nerror path: {os.path.dirname(output_jmxScript)}")
+                exit(-1)
         if not os.path.isabs(output_jmxScript):
             output_jmxScript = os.path.join(os.getcwd(), output_jmxScript)
+            if not os.path.isdir(os.path.dirname(output_jmxScript)):
+                print(os.path.dirname(output_jmxScript))
+                print("output_file_path the current directory is not a folder. "
+                      "Check whether there are special characters, such as special spaces..."
+                      f"\nerror path: {os.path.dirname(output_jmxScript)}")
+                exit(-1)
+
         run(input_file_path, filter_url, host_name, output_jmxScript, distinct)
+
         print(f"run success,jmx file saved in : {output_jmxScript}")
