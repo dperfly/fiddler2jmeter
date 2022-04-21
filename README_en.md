@@ -55,7 +55,7 @@ Options:
 1.2 Modify the script path and JMX file generation path and name in the script<br>
 ```text
 // FiddlerCharles2Jmeter.py / FiddlerCharles2Jmeter.exe   PATH
-var py_script_path = "C:/Users/Administrator/fiddler2jmeter/FiddlerCharles2Jmeter.py"
+var py_script_path = "C:/Users/Administrator/Desktop/FiddlerCharles2Jmeter.exe"
 
 // output jmx fileName
 var jmx_output_file = "C:/Users/Administrator/Desktop/demo.jmx"

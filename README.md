@@ -60,7 +60,7 @@ Options:
 1.2 修改脚本中的脚本路径以及jmx文件生成路径及名称<br>
 ```text
 // FiddlerCharles2Jmeter.py / FiddlerCharles2Jmeter.exe   PATH
-var py_script_path = "C:/Users/Administrator/fiddler2jmeter/FiddlerCharles2Jmeter.py"
+var py_script_path = "C:/Users/Administrator/Desktop/FiddlerCharles2Jmeter.exe"
 
 // output jmx fileName
 var jmx_output_file = "C:/Users/Administrator/Desktop/demo.jmx"
