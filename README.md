@@ -18,7 +18,18 @@
 ![Image text](.resources/img/img_02.jpg)<br>
 1.2.1 Charles导出为chlsj格式<br>
 ![Image text](.resources/img/img_07.jpg)<br>
-
+1.3 执行脚本<br>
+1.3.1 参数说明<br>
+1.3.1.1 需要导入的文件：saz文件（Fiddler文件）,chlsj(Charles文件)<br>
+1.3.1.2 需要到处的文件：jmx文件（生成的jmeter脚本文件）<br>
+1.3.1.3 过滤Http请求：不满足host则过滤，为正则匹配方式<br>
+1.3.1.4 过滤Http请求，通过/path部分，满足则过滤，为正则匹配方式<br>
+1.3.2 页面效果<br>
+![Image text](.resources/img/img_03.jpg)<br>
+1.3.3 结果展示<br>
+![Image text](.resources/img/img_04.jpg)<br>
+1.4 jmeter运行结果<br>
+![Image text](.resources/img/img_05.jpg)<br>
 ## No-GUI 运行方式
 ```text
 F:\>python FiddlerCharles2Jmeter.py -h  
