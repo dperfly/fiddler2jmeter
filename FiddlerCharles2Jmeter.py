@@ -186,7 +186,8 @@ class FiddlerReader(Reader):
                 'post_value': ''
             }
         '''
-        header_flag = False
+        is_data = False
+        is_header_first = True
         http_dict = {
             'server_name': None,
             'port_number': None,
@@ -211,34 +212,33 @@ class FiddlerReader(Reader):
                 #  去除
                 #       ^b'(.*)'$ ---> b\'\'
                 #       \r\n ----> ''
-
-                # TODO 目前支持windows系统
                 s = str(header).replace(r'\r\n', '')
                 try:
                     s = re.findall("^b\'(.*)\'", s)[0]
                 except Exception as e:
                     print(e)
                     continue
-                if s == '' or None:
-                    pass
-                # ': ' is header
-                elif ': ' in s:
-                    # Get request header
-                    lists = re.findall("^(.*): (.*)$", s)
-
-                    # TODO The cookie is directly stored in the header manger
-                    # if lists[0][0] == 'Cookie':
-                    #    pass
-
-                    http_dict['Header'].append((lists[0][0], html.escape(lists[0][1])))
+                # method uri version row
+                if is_header_first is True:
+                    request_line_dict = self._set_request_line(s)
+                    http_dict.update(request_line_dict)
+                    is_header_first = False
                 else:
-                    # Get the request body header and parameters
-                    if header_flag is False:
-                        request_line_dict = self._set_request_line(s)
-                        http_dict.update(request_line_dict)
-                        header_flag = True
+                    # space row
+                    if s == '' or None:
+                        is_data = True
+                    # header row
+                    if ': ' in s and is_data is False:
+                        # Get request header
+                        lists = re.findall("^(.*): (.*)$", s)
+
+                        # TODO The cookie is directly stored in the header manger
+                        # if lists[0][0] == 'Cookie':
+                        #    pass
+
+                        http_dict['Header'].append((lists[0][0], html.escape(lists[0][1])))
                     else:
-                        http_value = s + http_value
+                        http_value += s
             http_dict['post_value'] = html.escape(str(http_value))
         return http_dict
 
