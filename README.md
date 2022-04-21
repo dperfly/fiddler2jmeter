@@ -18,22 +18,13 @@
 ![Image text](.resources/img/img_02.jpg)<br>
 1.2.1 Charles导出为chlsj格式<br>
 ![Image text](.resources/img/img_07.jpg)<br>
-1.3 执行脚本<br>
-1.3.1 参数说明<br>
-1.3.1.1 需要导入的文件：saz文件（Fiddler文件）,chlsj(Charles文件)<br>
-1.3.1.2 需要到处的文件：jmx文件（生成的jmeter脚本文件）<br>
-1.3.1.3 过滤Http请求：不满足host则过滤，为正则匹配方式<br>
-1.3.1.4 过滤Http请求，通过/path部分，满足则过滤，为正则匹配方式<br>
-1.3.2 页面效果<br>
-![Image text](.resources/img/img_03.jpg)<br>
-1.3.3 结果展示<br>
-![Image text](.resources/img/img_04.jpg)<br>
-1.4 jmeter运行结果<br>
-![Image text](.resources/img/img_05.jpg)<br>
 
 ## No-GUI 运行方式
 ```text
-F:\>python FiddlerCharles2Jmeter.py -h
+F:\>python FiddlerCharles2Jmeter.py -h  
+或 
+F:\> FiddlerCharles2Jmeter.exe -h
+
 
 Usage: Generate JMeter script command example:
 
@@ -52,6 +43,8 @@ Options:
   -f HOST_NAME, --filter-host-name=HOST_NAME
                         filter-host-name regex default=^.*$
   -d, --distinct        distinct: Filter duplicate requests , default=False
+  -s, --is-fiddler-script-model
+                        fiddler script model :default=False
 
 ```
 ```text
@@ -60,9 +53,6 @@ Options:
 运行成功：
     run success,jmx file saved in : F:\github-home\fiddler2jmeter\charles\test_http_demo.jmx
 ```
-
-## TODO
-1.支持fiddler-script 快速运行，不用导出;
 
 ## Fiddler-Script 运行方式
 1.1 打开Fiddler,替换FiddlerScript脚本（将FiddlerScript.js内容复制到FiddlerScript中）<br>
@@ -87,7 +77,7 @@ PyQt5  ==  5.15.2
 ## 注意
 1.注意HTTPS 抓包工具需要安装证书否则导出的请求的method 为 CONNECT，执行脚本时会忽略CONNECT<br>
 2.根据导入文件的后缀进行判断切记不要改后缀名<br>
-3.有bug记得邮件告知或者微信：dongpengfei826153155@gmail.com 记得附带Fiddler或者Charles导出文件,方便定位问题<br>
+3.jmeter4.0 以上<br>
 4.目前只考虑windows系统<br>
 
 
@@ -95,3 +85,4 @@ PyQt5  ==  5.15.2
 1.Issues.<br>
 2.微信:dongpengfei826153155<br>
 3.E-mail: dongpengfei826153155@gmail.com<br>
+4.有问题记得带上有问题的文件哦~~<br>

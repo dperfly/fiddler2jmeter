@@ -15,22 +15,12 @@ Chinese documents(中文文档)：https://www.cnblogs.com/fbyyx/p/12827415.html
 ![Image text](.resources/img/img_02.jpg)<br>
 1.2.1 Export Charles recording as chlsj format<br>
 ![Image text](.resources/img/img_07.jpg)<br>
-1.3 Execute script<br>
-1.3.1 Parameter elucidation<br>
-1.3.1.1 Files to import: saz files(Fiddler files), chlsi files(Charles files)<br>
-1.3.1.2 Files to export: jmx files(Generated Jmeter script file)<br>
-1.3.1.3 Filter HTTP request: regex mode<br>
-1.3.2 Page effect<br>
-![Image text](.resources/img/img_03.jpg)<br>
-1.3.3 Conversion results<br>
-![Image text](.resources/img/img_04.jpg)<br>
-1.4 Run JMeter results<br>
-![Image text](.resources/img/img_05.jpg)<br>
-
 
 ## No-GUI Run
 ```text
-F:\>python FiddlerCharles2Jmeter.py -h
+F:\>python FiddlerCharles2Jmeter.py -h  
+or 
+F:\> FiddlerCharles2Jmeter.exe -h
 
 Usage: Generate JMeter script command example:
 
@@ -49,6 +39,8 @@ Options:
   -f HOST_NAME, --filter-host-name=HOST_NAME
                         filter-host-name regex default=^.*$
   -d, --distinct        distinct: Filter duplicate requests , default=False
+  -s, --is-fiddler-script-model
+                        fiddler script model :default=False
 
 ```
 ```text
@@ -74,12 +66,9 @@ var jmx_output_file = "C:/Users/Administrator/Desktop/demo.jmx"
 ## Remarks
 1.Ignore data with method connect.<br>
 2.Only Windows systems are supported.<br>
-3.Only GET and POST requests are supported.<br>
-4.JMeter version greater than 4.0 is required.<br>
-5.Charles doesn't support http2.0 conversion, so it's filtered out directly.<br>
+3.JMeter version greater than 4.0 is required.<br>
+4.Charles doesn't support http2.0 conversion, so it's filtered out directly.<br>
 
-## TODO
-1.Run as a fiddler plug-in with FiddlerScript<br>
 
 ## ENV
 ```buildoutcfg
