@@ -323,7 +323,7 @@ class CharlesReader(Reader):
 
     def __get_charles_request_body(self, request: dict):
         if "body" in request.keys():
-            return request['body']['text']
+            return html.escape(request['body']['text'])
         else:
             return None
 
@@ -342,12 +342,19 @@ class CharlesReader(Reader):
                     request_data = data['request']
                     headers = request_data['header']['headers']
                     # path = [header['value'] for header in headers if header['name'] == ':path'][0]
+                    path = ""
+                    if data['path'] is not None or "":
+                        path = data['path']
+
+                    if data['query'] is not None or "":
+                        path = path + "?" + data['query']
+                    path = html.escape(path)
                     http_dict = {
                         'server_name': data['host'] if data['host'] != '' else None,
                         'port_number': data['actualPort'] if data['actualPort'] != '' else None,
                         'protocol_http': data['scheme'] if data['scheme'] != '' else None,
                         'encoding': None,
-                        'path': data['path'] if data['path'] != '' else None,
+                        'path': path,
                         'method': data['method'] if data['method'] != '' else None,
                         'follow_redirects': True,
                         'auto_redirects': False,
@@ -582,7 +589,7 @@ class JmeterWriter(JmeterTemplate):
         jmx_header_manager = self.header_manager
         header_manager_values = ''
         for i in header_manager:
-            if i[0] == "host":
+            if str(i[0]).lower() == "host":
                 pass
             else:
                 header_manager_values = header_manager_values + (
