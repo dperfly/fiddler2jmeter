@@ -13,8 +13,8 @@ Chinese documents(中文文档)：https://www.cnblogs.com/fbyyx/p/12827415.html
 1.2 Export needed HTTP request<br>
 1.2.1 Export Fiddler recording as saz format<br>
 ![Image text](.resources/img/img_02.jpg)<br>
-1.2.1 Export Charles recording as chlsj format<br>
-![Image text](.resources/img/img_07.jpg)<br>
+1.2.1 Export Charles recording as chlsj format ( JSON Session File )<br>
+![Image text](.resources/img/img_07.png)<br>
 1.3 Execute script<br>
 1.3.1 Parameter elucidation<br>
 1.3.1.1 Files to import: saz files(Fiddler files), chlsi files(Charles files)<br>

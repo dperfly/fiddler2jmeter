@@ -335,20 +335,19 @@ class CharlesReader(Reader):
         charles_data = self.__get_charles_data()
         jmeter_data = []
         for data in charles_data:
-            if str(data['method']).lower() == 'connect' or str(data['protocolVersion']) == 'HTTP/2.0':
-                # TODO  charles to jmeter：Unsupported request type : http/2.0 ,Automatic filtering
+            if str(data['method']).lower() == 'connect':
                 continue
             else:
                 try:
                     request_data = data['request']
                     headers = request_data['header']['headers']
-                    first_line = request_data['header']['firstLine']
+                    # path = [header['value'] for header in headers if header['name'] == ':path'][0]
                     http_dict = {
                         'server_name': data['host'] if data['host'] != '' else None,
                         'port_number': data['actualPort'] if data['actualPort'] != '' else None,
                         'protocol_http': data['scheme'] if data['scheme'] != '' else None,
                         'encoding': None,
-                        'path': self._set_request_line(first_line)['path'],
+                        'path': data['path'] if data['path'] != '' else None,
                         'method': data['method'] if data['method'] != '' else None,
                         'follow_redirects': True,
                         'auto_redirects': False,
@@ -356,7 +355,8 @@ class CharlesReader(Reader):
                         'DO_MULTIPART_POST': False,
                         'post_value': self.__get_charles_request_body(request_data),
                         'Cookie': None,
-                        'Header': [(i['name'], html.escape(i['value'])) for i in headers]
+                        'Header': [(i['name'], html.escape(i['value'])) for i in headers if
+                                   not str(i['name']).startswith(":")]
                     }
                     jmeter_data.append(http_dict)
                 except Exception as e:

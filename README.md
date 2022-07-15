@@ -16,8 +16,8 @@
 1.2 将需要的HTTP请求导出<br>
 1.2.1 Fiddler导出为saz格式<br>
 ![Image text](.resources/img/img_02.jpg)<br>
-1.2.1 Charles导出为chlsj格式<br>
-![Image text](.resources/img/img_07.jpg)<br>
+1.2.1 Charles导出为chlsj格式（JSON Session File）<br>
+![Image text](.resources/img/img_07.png)<br>
 1.3 执行脚本<br>
 1.3.1 参数说明<br>
 1.3.1.1 需要导入的文件：saz文件（Fiddler文件）,chlsj(Charles文件)<br>
