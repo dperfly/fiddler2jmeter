@@ -582,8 +582,11 @@ class JmeterWriter(JmeterTemplate):
         jmx_header_manager = self.header_manager
         header_manager_values = ''
         for i in header_manager:
-            header_manager_values = header_manager_values + (
-                self.header_manager_value.format(header_name=i[0], header_value=i[1]))
+            if i[0] == "host":
+                pass
+            else:
+                header_manager_values = header_manager_values + (
+                    self.header_manager_value.format(header_name=i[0], header_value=i[1]))
         jmx_header_manager = jmx_header_manager.format(header_manager_value=header_manager_values)
 
         # 如果是public 则是总的公共部分的header manager
