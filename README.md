@@ -1,9 +1,16 @@
 # Fiddler 或 Charles 文件转换为 Jmeter4.0以上脚本
+[English](README_en.md)  
+
+![GitHub License](https://img.shields.io/github/license/dperfly/fiddler2jmeter)
+[![Release](https://img.shields.io/github/v/release/dperfly/fiddler2jmeter.svg?style=flat-square)](https://github.com/dperfly/fiddler2jmeter/releases)
+![GitHub top language](https://img.shields.io/github/languages/top/dperfly/fiddler2jmeter)
+[![GitHub issues](https://img.shields.io/github/issues/dperfly/fiddler2jmeter)](https://github.com/dperfly/xmind2testcase/issues)
+![Gem Total Downloads](https://img.shields.io/github/downloads/dperfly/fiddler2jmeter/total)
+
 ![Image text](.resources/img/logo.png)<br>
 解决脚本录制问题,可以将Fiddler或Charles转换成对应的Jmeter脚本,实现部分内容的参数化配置，通过修改部分参数或参数化可以对http协议的接口进行自动化测试或简单的压力测试<br>
-博客地址：https://www.cnblogs.com/fbyyx/p/12827415.html <br>
 
-[README_en.md](README_en.md)
+
 ### 下载地址
 【FiddlerorCharles2jmeter.exe】1.1.0 可执行文件[下载地址](https://github.com/dperfly/fiddler2jmeter/releases/tag/1.1.0)
 
